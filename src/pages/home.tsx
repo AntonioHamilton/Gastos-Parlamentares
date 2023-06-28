@@ -42,7 +42,7 @@ export default function Home() {
 
   useEffect(() => {
     handleApi(router.query)
-  }, [menuState, router.query.page])
+  }, [menuState, router.query.page, router.query.year])
 
   return (
     <>

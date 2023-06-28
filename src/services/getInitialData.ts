@@ -17,6 +17,7 @@ export const getInitialData = async ({page = 1, size = 10}) => {
       'Nome do Fornecedor': item.supplierName,
       'Valor Líquido': formatMoney(item.netValue),
       'Valor Total': formatMoney(item.value),
+      'Reembolso': formatMoney(item.refund)
     }
   })
 

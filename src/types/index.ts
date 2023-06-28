@@ -8,6 +8,7 @@ export type getInitialDataProps = {
   supplierName: string,
   netValue: number,
   value: number,
+  refund: number
 }
 
 export type totalBillsProps = {
