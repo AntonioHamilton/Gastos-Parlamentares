@@ -1,0 +1,39 @@
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 8px;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    align-self: center;
+    margin-bottom: 16px;
+  }
+
+  &__button, &__button-active {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 4px;
+    color: #8ca0ed;
+
+    &:hover {
+      background: #4d5ced;
+    }
+
+    &-active {
+      color: #fff;
+      background: #7c8df6;
+    }
+  }
+}
+
+.hide {
+  display: none !important;
+}

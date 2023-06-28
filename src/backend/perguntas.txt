@@ -1,0 +1,20 @@
+Qual o gasto total por partido em 2020?
+Qual o gasto médio dos partidos até 2009 - 2020
+Quais os tipos mais comuns de gasto feito pelos parlamentares? (descrição)
+Quais os parlamentares que mais gastam?
+Quais os parlamentares que menos gastam?
+Qual o maior gasto de cada parlamentar?
+Qual o menor gasto de cada parlamentar?
+Quanto os parlamentares gastam no ano de eleição?
+Quais estados em que os parlamentares gastam mais?
+Quais estados em que os parlamentares gastam menos?
+
+
+
+
+
+- Teremos falhas pois alguns dados não foram possíveis de serem importados (pela quantidade de dados e o uso do mongo atlas free)
+- Dados totais 3.855.650 
+- Dados importados 1.346.614 (2016 - 2020)
+- Porcentagem do total: ~34,00%
+
