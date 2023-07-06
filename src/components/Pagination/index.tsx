@@ -1,6 +1,7 @@
 import NextIcon from '@/assets/NextIcon'
 import BackIcon from '@/assets/BackIcon'
 import styles from './styles.module.scss'
+import { useRouter } from 'next/router'
 
 type PaginationProps = {
   resultsQTD: number,
@@ -8,9 +9,11 @@ type PaginationProps = {
   setPage: (page: number) => void
 }
 
-const QTDItens = 10
-
 const Pagination = ({resultsQTD, page, setPage}: PaginationProps) => {
+  const router = useRouter()
+
+  const QTDItens = Number(router.query.size) || 10
+
   const pageButtonQTD = () => {
     return Math.floor(resultsQTD / QTDItens) + (resultsQTD % QTDItens >= 1 ? 1 : 0)
   }

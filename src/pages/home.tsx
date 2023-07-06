@@ -19,9 +19,9 @@ export default function Home() {
   const chooseAPI: Record<string, Function> = {
     'Dados': getInitialData,
     'Gastos totais': totalBills,
-    'Tipos de Gastos': billsType
+    'Tipos de Gastos': billsType,
+    'Parlamentares que mais gastam': billsType
   }
-
 
   const handleApi = async (params: any) => {
     setLoading(true)
@@ -32,17 +32,17 @@ export default function Home() {
   }
 
   useEffect(() => {
-    router.push({query: { page: String(page + 1)}})
+    router.push({query: {...router.query, page: String(page + 1)}})
   }, [page])
 
   useEffect(() => {
-    router.push({query: { page: String(1)}})
+    router.push({query: {...router.query, page: String(1)}})
     setPage(0)
   }, [menuState])
 
   useEffect(() => {
     handleApi(router.query)
-  }, [menuState, router.query.page, router.query.year])
+  }, [menuState, router.query.page, router.query.year, router.query.size])
 
   return (
     <>
@@ -54,9 +54,10 @@ export default function Home() {
         <Layout>
           <Menu 
             setMenuState={setMenuState}
-            menuState={menuState}  
+            menuState={menuState}
           />
           <Table
+            menuState={menuState}
             page={page}
             setPage={setPage}
             data={data} 

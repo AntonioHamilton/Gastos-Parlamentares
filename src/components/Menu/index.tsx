@@ -9,9 +9,11 @@ const menuProperties = [
   {name: 'Dados', icon: ''},
   {name: 'Gastos totais', icon: ''},
   {name: 'Tipos de Gastos', icon: ''},
+  {name: 'Parlamentares que mais gastam', icon: ''},
+
 ]
 
-const Menu = ({setMenuState, menuState}: MenuProps) => {
+const Menu = ({setMenuState, menuState,}: MenuProps) => {
 
   const clickButton = (name: string) => {
     setMenuState(name)
