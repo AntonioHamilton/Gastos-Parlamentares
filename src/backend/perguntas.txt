@@ -1,13 +1,19 @@
-Qual o gasto total por partido em 2020?
-Qual o gasto médio dos partidos até 2009 - 2020
-Quais os tipos mais comuns de gasto feito pelos parlamentares? (descrição)
-Quais os parlamentares que mais gastam?
-Quais os parlamentares que menos gastam?
-Qual o maior gasto de cada parlamentar?
-Qual o menor gasto de cada parlamentar?
-Quanto os parlamentares gastam no ano de eleição?
-Quais estados em que os parlamentares gastam mais?
-Quais estados em que os parlamentares gastam menos?
+Qual o gasto total por partido em 2020? - ✅ 
+Qual o gasto médio dos partidos até 2009 - 2020 ❎
+Quais os tipos mais comuns de gasto feito pelos parlamentares? (descrição) ✅ 
+Quais os parlamentares que mais gastam? ✅ 
+Quais os parlamentares que menos gastam? ❎
+Qual o maior gasto de cada parlamentar? ✅
+Qual o menor gasto de cada parlamentar? ✅
+Quanto os parlamentares gastam no ano de eleição? ❎
+Quais estados em que os parlamentares gastam mais? ✅
+Quais estados em que os parlamentares gastam menos? ❎
+Quais parlamentares gastam mais por estado, por ano? ✅
+Quais os gastos mais recorrentes por mês, por ano? 
+Quanto cada partido gasta por mês, por ano? ✅
+Quanto cada parlamentar gasta com Campanha por mês, por ano? regex ("DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.") - ✅
+Quanto cada parlamentar gasta com Passagens, por mês e por ano? regex ("Emissão Bilhete Aéreo", "PASSAGENS AÉREAS, PASSAGENS TERRESTRES, MARÍTIMAS OU FLUVIAIS") - ✅
+
 
 
 

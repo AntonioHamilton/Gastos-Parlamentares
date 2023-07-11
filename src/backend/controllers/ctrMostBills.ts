@@ -11,14 +11,16 @@ export const getHigherExpensesPerCongressman = async (year: number, pageNumber =
     { $limit: pageSize },
   ]
 
-  try {
-    const countPipeline = [...aggregationPipeline]; // Copia o pipeline para a contagem
-    countPipeline.push({ $count: "totalDocuments" });
+  const agreggationCountDocuments: any = [
+    { $match: { year: year, name: { $regex: regex } } },
+    { $group: { _id: { year: "$year", name: "$name", party: "$politicalParty" }, totalSpent: { $sum: "$value" } } },
+    { $sort: { totalSpent: -1 } },
+    { $count: "totalDocuments" }
+  ]
 
-    const [result, count] = await Promise.all([
-      Bills.aggregate(aggregationPipeline).exec(),
-      Bills.aggregate(countPipeline).exec()
-    ]);
+  try {
+    const result = await Bills.aggregate(aggregationPipeline).exec()
+    const count = await Bills.aggregate(agreggationCountDocuments).exec()
 
     if (result.length === 0) {
       return { error: "Nenhum resultado encontrado." };
@@ -26,8 +28,7 @@ export const getHigherExpensesPerCongressman = async (year: number, pageNumber =
 
     return { result, totalDocuments: count[0].totalDocuments };
   } catch (error) {
-    console.log({error})
-    return { error: "Erro ao obter o gasto total por partido por ano" }
+    return { error: "Erro ao obter o gasto total por parlamentar por ano" }
   }
 }
 

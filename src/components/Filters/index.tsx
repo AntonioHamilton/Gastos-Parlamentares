@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import styles from './styles.module.scss'
+import { months, sizes, states, years } from '@/constants/filters'
 
 type FiltersProps = {
   filtersToShow?: string[]
@@ -8,8 +9,7 @@ type FiltersProps = {
 const Filters = ({filtersToShow}: FiltersProps) => {
   const router = useRouter()
 
-  const years = ["2016", "2017", "2018", "2019", "2020"]
-  const sizes = ['10', '20', '30', '40', '50']
+
 
   const handleShowFilter = (filter: string) => {
     if (filtersToShow) {
@@ -32,24 +32,48 @@ const Filters = ({filtersToShow}: FiltersProps) => {
     router.push({ query: {...router.query, year: text} })
   }
 
+  const onSelectState = (text: string) => {
+    router.push({ query: {...router.query, state: text} })
+  }
+
+  const onSelectMonth = (text: string) => {
+    router.push({ query: {...router.query, month: text} })
+  }
+
   return (
     <div className={styles["filters-container"]}>
       <div className={styles["filters-container__wrapper__input"]}>
         <label>{handleShowFilter('input') ? 'O que você está procurando?' : 'Boa análise de dados'}</label>
-        {handleShowFilter('input') && <input onChange={(e) => onChangeInput(e.target.value)} />}
+        {handleShowFilter('input') && <input disabled={false} onChange={(e) => onChangeInput(e.target.value)} />}
       </div>
       <div className={styles["filters-container__wrapper"]}>
       {handleShowFilter('size') && <div className={styles["filters-container__wrapper__filter"]}>
           <label>Tamanho</label>
-          <select onChange={(e) => onSelectSize(e.target.value)}>
+          <select defaultValue='10' onChange={(e) => onSelectSize(e.target.value)}>
             {sizes.map((size) => (
               <option key={size} value={size} selected={size === router.query.size}>{size}</option>
             ))}
           </select>
         </div>}
+        {handleShowFilter('state') && <div className={styles["filters-container__wrapper__filter"]}>
+          <label>Estado</label>
+          <select defaultValue='SE' onChange={(e) => onSelectState(e.target.value)}>
+            {states.map((state) => (
+              <option key={state} value={state} selected={state === router.query.state}>{state}</option>
+            ))}
+          </select>
+        </div>}
+        {handleShowFilter('month') && <div className={styles["filters-container__wrapper__filter"]}>
+          <label>Mês</label>
+          <select defaultValue='1' onChange={(e) => onSelectMonth(e.target.value)}>
+            {Object.keys(months).map((month) => (
+              <option key={month} value={month} selected={month === router.query.month}>{months[month]}</option>
+            ))}
+          </select>
+        </div>}
         {handleShowFilter('year') && <div className={styles["filters-container__wrapper__filter"]}>
           <label>Ano</label>
-          <select onChange={(e) => onSelectYear(e.target.value)}>
+          <select defaultValue='2016' onChange={(e) => onSelectYear(e.target.value)}>
             {years.map((year) => (
               <option key={year} value={year} selected={year === router.query.year}>{year}</option>
             ))}
