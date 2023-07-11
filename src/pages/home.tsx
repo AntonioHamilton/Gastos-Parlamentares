@@ -1,31 +1,21 @@
 import { NextSeo } from 'next-seo';
-import Menu from '@/components/Menu';
+import Menu, { menuProperties } from '@/components/Menu';
 import Layout from '@/components/Layout';
 import { useEffect, useState } from 'react';
 import Table from '@/components/Table';
-import { getInitialData } from '@/services/getInitialData';
-import { totalBills } from '@/services/totalBills';
 import { useRouter } from 'next/router';
-import { billsType } from '@/services/billsType';
 
 export default function Home() {
-  const [menuState, setMenuState] = useState<string>('Dados')
+  const [menuState, setMenuState] = useState<string>('Todos os dados')
   const [data, setData] = useState([])
   const [totalDocuments, setTotalDocuments] = useState(0)
   const [page, setPage] = useState(0)
   const [loading, setLoading] = useState(false) 
   const router = useRouter()
 
-  const chooseAPI: Record<string, Function> = {
-    'Dados': getInitialData,
-    'Gastos totais': totalBills,
-    'Tipos de Gastos': billsType,
-    'Parlamentares que mais gastam': billsType
-  }
-
   const handleApi = async (params: any) => {
     setLoading(true)
-    const {data, totalDocuments} = await chooseAPI[menuState](params)
+    const {data, totalDocuments} = await menuProperties[menuState].function(params)
     setData(data)
     setTotalDocuments(totalDocuments)
     setLoading(false)
@@ -42,7 +32,7 @@ export default function Home() {
 
   useEffect(() => {
     handleApi(router.query)
-  }, [menuState, router.query.page, router.query.year, router.query.size])
+  }, [menuState, router.query.page, router.query.year, router.query.size, router.query.state, router.query.month])
 
   return (
     <>
