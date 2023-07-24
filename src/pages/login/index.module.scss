@@ -17,6 +17,10 @@
         padding: 8px;
         font-size: 14px;
         margin-top: 16px;
+
+        &:hover {
+            background: #162bd1;
+        }
     }
 
     .anchor-register {
@@ -45,6 +49,7 @@
         }
 
         input {
+            padding: 4px;
             border-radius: 2px;
             border: 1px solid black;
         }
