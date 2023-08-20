@@ -25,11 +25,9 @@ const Register = () => {
   const handleRegister = async () => {
     setLoading(true)
     try {
-      const result = await register(userData)
+      const {status} = await register(userData)
 
-      console.log(result)
-
-      if (result.status === 201) {
+      if (status === 201) {
         router.push('/login')
       }
     } catch (e: any) {

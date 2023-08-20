@@ -32,7 +32,6 @@ export const getLocation = async ({token}: GetLocationProps) => {
 
 export const getAllLocations = async ({token}: GetLocationProps) => {
   const result = await api.get(`/all-locations`, {headers: {token}});
-  console.log(result)
 
   if (result.data?.error) {
     return result.data

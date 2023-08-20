@@ -22,7 +22,6 @@ type MapProps = {
 }
 
 const Map = ({locations, userLocation}: MapProps) => {
-  console.log(locations, userLocation)
   return (
     <div className={styles['container']}>
       <h1>Geolocalização dos usuários</h1>

@@ -16,9 +16,14 @@ type RegisterProps = {
 export const login = async  ({ email, password}: LoginProps) => {
   try {
     const user = await User.findOne({ email }).select('+password');
+
+    if (!user) {
+      return { status: 400, error: 'Email ou senha incorretos.' };
+    }
+
     const passwordsMatch = await bcrypt.compare(password, user.password);
 
-    if (!user || !passwordsMatch) {
+    if (!passwordsMatch) {
       return { status: 400, error: 'Email ou senha incorretos.' };
     }
 

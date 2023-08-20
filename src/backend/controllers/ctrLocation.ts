@@ -36,7 +36,7 @@ export const getLocation = async ({ token }: GetLocationProps) => {
     const splitedToken = token.split(' ')[1]
     const tokenUncoded = jwt.decode(splitedToken);
     const { user } = JSON.parse(JSON.stringify(tokenUncoded))
-    const userExistent = await User.findOne({ email: user.email }).select('-password');
+    const userExistent = await User.findOne({ email: user.email });
 
     if (!userExistent) {
       return { status: 401, error: 'Esse token é inválido' };
@@ -60,16 +60,13 @@ export const setLocation = async ({token, latitude, longitude}: SetLocationProps
     const splitedToken = token.split(' ')[1]
     const tokenUncoded = jwt.decode(splitedToken);
     const { user } = JSON.parse(JSON.stringify(tokenUncoded))
-    const userExistent = await User.findOne({ email: user.email }).select('-password');
+    const userExists = await User.findOne({ email: user.email });
 
-    if (!userExistent) {
+    if (!userExists) {
       return { status: 401, error: 'Esse token é inválido' };
     }
-
-    userExistent.latitude = latitude;
-    userExistent.longitude = longitude;
   
-    await userExistent.save();
+    await User.findOneAndUpdate({ email: user.email }, { latitude, longitude });
 
     return { status: 200 };
   } catch (e) {

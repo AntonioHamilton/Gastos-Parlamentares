@@ -10,17 +10,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
       if (name === '' || email === '' || password === '') {
-        console.log('oi')
         res.status(400).json({ error: "Preencha todos os dados para fazer o cadastro" }); 
       }
 
-      const {error} = await register({name, email, password});
+      const {error, status} = await register({name, email, password});
 
       if (error) {
-        res.status(400).json({error})
+        res.status(status).json({error})
       }
 
-      res.status(201).json({})
+      res.status(status).json({status})
     } catch (e) {
       res.status(500).json({ error: "Erro interno do servidor" });
     }
