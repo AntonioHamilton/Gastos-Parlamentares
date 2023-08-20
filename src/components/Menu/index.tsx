@@ -11,6 +11,7 @@ import { topSpendingCongressmanState } from '@/services/topSpendingCongressmanSt
 import { partySpendingByMonthByYear } from '@/services/partySpendingByMonthByYear'
 import { airTicketByCongressman } from '@/services/airTicketByCongressman'
 import { campaignByCongressman } from '@/services/campaignByCongressman'
+import { useRouter } from 'next/router'
 
 type MenuProps = {
   setMenuState: (name: string) => void
@@ -38,9 +39,15 @@ export const menuProperties: Record<string, MenuPropertiesProps> = {
 }
 
 const Menu = ({setMenuState, menuState,}: MenuProps) => {
+  const router = useRouter()
 
   const clickButton = (name: string) => {
     setMenuState(name)
+  }
+
+  const handleExit = () => {
+    localStorage.setItem('token', '')
+    router.push('/login')
   }
 
   return (
@@ -56,8 +63,15 @@ const Menu = ({setMenuState, menuState,}: MenuProps) => {
           >
             {menuProperties[item].icon} {item}
           </button>
+           
         )
       })}
+      <button
+        className={styles[`menu-container__button`]}
+        onClick={handleExit} 
+      >
+        sair
+      </button>
     </div>
   )
 }

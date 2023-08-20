@@ -7,6 +7,8 @@ const userSchema = new Schema({
   name:  { type: String, require: true },
   email: { type: String, require: true },
   password: { type: String, require: true },
+  latitude: {type: Number, require: false},
+  longitude: {type: Number, require: false}
 })
 
 userSchema.pre('save', async function (next) {

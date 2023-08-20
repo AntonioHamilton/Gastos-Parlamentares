@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import Pagination from "../Pagination";
 import DataTable from "./DataTable";
 import ReactLoading from 'react-loading'
@@ -13,10 +13,11 @@ type TableProps = {
   totalDocuments: number
   page: number
   menuState: string
+  children: ReactNode
   setPage: (value: number) => void
 }
 
-const Table = ({data, loading, totalDocuments, menuState, page, setPage}: TableProps) => {
+const Table = ({data, loading, totalDocuments, menuState, page, children, setPage}: TableProps) => {
   const router = useRouter()
 
   return (
@@ -29,6 +30,7 @@ const Table = ({data, loading, totalDocuments, menuState, page, setPage}: TableP
         </div>
       }
       {(router.query.size ? totalDocuments > Number(router.query.size) : totalDocuments > 10) && <Pagination page={page} setPage={setPage} resultsQTD={totalDocuments}/>}
+      {children}
     </div>
   )
 }

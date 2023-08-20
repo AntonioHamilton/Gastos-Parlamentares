@@ -44,7 +44,7 @@ const Login = () => {
         </div>
         <div className={styles["login-container__input-wrapper"]}>
           <label>Senha</label>
-          <input placeholder="insira sua senha" onChange={(e) => handleDataChange('password', e.target.value)} />
+          <input type='password' placeholder="insira sua senha" onChange={(e) => handleDataChange('password', e.target.value)} />
         </div>
         <p className={styles['error']}>{error}</p>
         <button className={styles['button-login']} onClick={handleLogin}>
