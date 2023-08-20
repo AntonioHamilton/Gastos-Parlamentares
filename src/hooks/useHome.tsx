@@ -13,8 +13,9 @@ const useHome = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [menuState, setMenuState] = useState<string>('Todos os dados')
-  const [myLocation, setMyLocation] = useState<userLocation | null>(null)
-  const [locations, setLocations] = useState<userLocation[] | null>(null)
+  const [myLocation, setMyLocation] = useState<userLocation | null>({name: 'user', latitude: -10.945688, longitude: -37.090376})
+  const [locations, setLocations] = useState<userLocation[] | null>([])
+  const [permission, setPermission] = useState(false)
   const [data, setData] = useState([])
   const [totalDocuments, setTotalDocuments] = useState(0)
   const [page, setPage] = useState(0)
@@ -30,27 +31,43 @@ const useHome = () => {
   const getAllPositions = async () => {
     const token = localStorage.getItem('token')
 
-    const {data} =  await getAllLocations({token: token!})
+    const {data, status} =  await getAllLocations({token: token!})
+
+    if (status === 401) {
+      return router.push('/login')
+    }
+    
     setLocations(data.result)
   }
 
   const getUserPosition = async () => {
     const token = localStorage.getItem('token')
 
-    const {data} =  await getLocation({token: token!})
+    const {data, status} =  await getLocation({token: token!})
+
+    if (status === 401) {
+      return router.push('/login')
+    }
+
     setMyLocation(data.result)
-    setLocations([data.result])
   }
 
   const setPosition = async (position: GeolocationPosition) => {
+    setPermission(true)
+
     const latitude = position.coords.latitude
     const longitude = position.coords.longitude
     const token = localStorage.getItem('token')
   
+    setMyLocation({name: 'user', latitude, longitude})
     return await setLocation({latitude, longitude, token: token!})
   }
 
-  const positionError = (error: GeolocationPositionError) => console.error(error)
+  const positionError = (error: GeolocationPositionError) => {
+    setPermission(false)
+    console.error({error})
+    return
+  }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(setPosition, positionError)
@@ -75,6 +92,7 @@ const useHome = () => {
     setMenuState,
     setPage,
     setMyLocation,
+    permission,
     myLocation,
     page,
     menuState,

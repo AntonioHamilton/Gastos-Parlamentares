@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const {error, result} = await login({email, password});
 
       if (error) {
-        res.status(400).json({error})
+        return res.status(400).json({error})
       }
 
       res.status(200).json({token: result?.token})

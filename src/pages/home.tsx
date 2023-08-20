@@ -8,7 +8,18 @@ import { getLocation } from '@/services/location';
 import Map from '@/components/Map';
 
 const Home = () => {
-  const {setMenuState, setPage, myLocation, page, data, loading, menuState,totalDocuments, locations} = useHome()
+  const {
+    setMenuState, 
+    setPage,
+    myLocation, 
+    permission,
+    page, 
+    data, 
+    loading, 
+    menuState,
+    totalDocuments, 
+    locations
+  } = useHome()
 
   return (
     <>
@@ -31,7 +42,7 @@ const Home = () => {
               loading={loading} 
               totalDocuments={totalDocuments}
             >
-              {myLocation && locations && <Map userLocation={myLocation} locations={locations}/>}
+              {permission && myLocation && locations && <Map userLocation={myLocation} locations={locations}/>}
             </Table>
           </Layout>
         </Auth>

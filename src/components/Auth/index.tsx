@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { ReactNode, useEffect } from "react"
+import { ReactNode, useEffect, useState } from "react"
 
 type AuthProps = {
   children: ReactNode

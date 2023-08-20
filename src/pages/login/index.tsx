@@ -2,6 +2,7 @@ import { useState } from "react"
 import styles from './index.module.scss'
 import Card from "@/components/Card"
 import Link from "next/link"
+import ReactLoading from 'react-loading'
 import { useRouter } from "next/router"
 import { LoginProps, login } from "@/services/login"
 
@@ -37,22 +38,29 @@ const Login = () => {
   return (
     <div className={styles["login-container"]}>
       <Card>
-        <h1 className={styles['login-container__title']}>Gastos Parlamentares</h1>
-        <div className={styles["login-container__input-wrapper"]}>
-          <label>Email</label>
-          <input placeholder="insira seu email" onChange={(e) => handleDataChange('email', e.target.value)} />
-        </div>
-        <div className={styles["login-container__input-wrapper"]}>
-          <label>Senha</label>
-          <input type='password' placeholder="insira sua senha" onChange={(e) => handleDataChange('password', e.target.value)} />
-        </div>
-        <p className={styles['error']}>{error}</p>
-        <button className={styles['button-login']} onClick={handleLogin}>
-          Entrar
-        </button>
-        <Link className={styles['anchor-register']} href="/register">
-          Cadastrar
-        </Link>
+      {loading ?
+          <div className={styles["load-container"]}>
+            <ReactLoading width={200} height={200} type="spin" color="DodgerBlue" />
+          </div>
+          :
+          <>
+            <h1 className={styles['login-container__title']}>Gastos Parlamentares</h1>
+            <div className={styles["login-container__input-wrapper"]}>
+              <label>Email</label>
+              <input placeholder="insira seu email" onChange={(e) => handleDataChange('email', e.target.value)} />
+            </div>
+            <div className={styles["login-container__input-wrapper"]}>
+              <label>Senha</label>
+              <input type='password' placeholder="insira sua senha" onChange={(e) => handleDataChange('password', e.target.value)} />
+            </div>
+            <p className={styles['error']}>{error}</p>
+            <button className={styles['button-login']} onClick={handleLogin}>
+              Entrar
+            </button>
+            <Link className={styles['anchor-register']} href="/register">
+              Cadastrar
+            </Link>
+          </>}
       </Card>
     </div>
   )

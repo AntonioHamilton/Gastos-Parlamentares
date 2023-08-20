@@ -46,7 +46,7 @@ const Menu = ({setMenuState, menuState,}: MenuProps) => {
   }
 
   const handleExit = () => {
-    localStorage.setItem('token', '')
+    localStorage.removeItem('token')
     router.push('/login')
   }
 

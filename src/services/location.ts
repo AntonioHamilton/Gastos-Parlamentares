@@ -7,7 +7,7 @@ export type SetLocationProps = {
 }
 
 export const setLocation = async ({longitude, latitude, token}: SetLocationProps) => {
-  const result = await api.patch(`/location`, {longitude, latitude},  {headers: {token}});
+  const result = await api.patch('/location', {longitude, latitude},  {headers: {token}});
 
   if (result.data?.error) {
     return result.data
@@ -32,6 +32,7 @@ export const getLocation = async ({token}: GetLocationProps) => {
 
 export const getAllLocations = async ({token}: GetLocationProps) => {
   const result = await api.get(`/all-locations`, {headers: {token}});
+  console.log(result)
 
   if (result.data?.error) {
     return result.data

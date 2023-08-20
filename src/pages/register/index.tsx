@@ -27,6 +27,8 @@ const Register = () => {
     try {
       const result = await register(userData)
 
+      console.log(result)
+
       if (result.status === 201) {
         router.push('/login')
       }

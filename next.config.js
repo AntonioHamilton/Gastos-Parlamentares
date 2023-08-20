@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/home',
+        destination: '/login',
         permanent: true, // Defina como "false" para redirecionamento temporário
       },
     ];
