@@ -9,8 +9,6 @@ type FiltersProps = {
 const Filters = ({filtersToShow}: FiltersProps) => {
   const router = useRouter()
 
-
-
   const handleShowFilter = (filter: string) => {
     if (filtersToShow) {
       return -1 !== filtersToShow.findIndex((item) => 
@@ -41,39 +39,39 @@ const Filters = ({filtersToShow}: FiltersProps) => {
   }
 
   return (
-    <div className={styles["filters-container"]}>
+    <div data-testid='filters' className={styles["filters-container"]}>
       <div className={styles["filters-container__wrapper__input"]}>
         <label>{handleShowFilter('input') ? 'O que você está procurando?' : 'Boa análise de dados'}</label>
-        {handleShowFilter('input') && <input disabled={false} onChange={(e) => onChangeInput(e.target.value)} />}
+        {handleShowFilter('input') && <input data-testid='input' disabled={false} onChange={(e) => onChangeInput(e.target.value)} />}
       </div>
       <div className={styles["filters-container__wrapper"]}>
       {handleShowFilter('size') && <div className={styles["filters-container__wrapper__filter"]}>
-          <label>Tamanho</label>
-          <select defaultValue='10' onChange={(e) => onSelectSize(e.target.value)}>
+          <label data-testid='size'>Tamanho</label>
+          <select data-testid='sizeSelect' defaultValue='10' onChange={(e) => onSelectSize(e.target.value)}>
             {sizes.map((size) => (
               <option key={size} value={size} selected={size === router.query.size}>{size}</option>
             ))}
           </select>
         </div>}
         {handleShowFilter('state') && <div className={styles["filters-container__wrapper__filter"]}>
-          <label>Estado</label>
-          <select defaultValue='SE' onChange={(e) => onSelectState(e.target.value)}>
+          <label data-testid='state'>Estado</label>
+          <select data-testid='stateSelect' defaultValue='SE' onChange={(e) => onSelectState(e.target.value)}>
             {states.map((state) => (
               <option key={state} value={state} selected={state === router.query.state}>{state}</option>
             ))}
           </select>
         </div>}
         {handleShowFilter('month') && <div className={styles["filters-container__wrapper__filter"]}>
-          <label>Mês</label>
-          <select defaultValue='1' onChange={(e) => onSelectMonth(e.target.value)}>
+          <label data-testid='month'>Mês</label>
+          <select data-testid='monthSelect' defaultValue='1' onChange={(e) => onSelectMonth(e.target.value)}>
             {Object.keys(months).map((month) => (
               <option key={month} value={month} selected={month === router.query.month}>{months[month]}</option>
             ))}
           </select>
         </div>}
         {handleShowFilter('year') && <div className={styles["filters-container__wrapper__filter"]}>
-          <label>Ano</label>
-          <select defaultValue='2016' onChange={(e) => onSelectYear(e.target.value)}>
+          <label data-testid='year'>Ano</label>
+          <select data-testid='yearSelect' defaultValue='2016' onChange={(e) => onSelectYear(e.target.value)}>
             {years.map((year) => (
               <option key={year} value={year} selected={year === router.query.year}>{year}</option>
             ))}

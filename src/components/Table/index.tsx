@@ -21,15 +21,15 @@ const Table = ({data, loading, totalDocuments, menuState, page, children, setPag
   const router = useRouter()
 
   return (
-    <div className={styles["table-container"]}>
+    <div data-testid='data-table'  className={styles["table-container"]}>
       <Filters filtersToShow={menuProperties[menuState].filters}/>
       {data.length > 0 && !loading && <DataTable data={data} headers={Object.keys(data[0])}/>}
       {loading && 
-        <div className={styles["load-container"]}>
+        <div data-testid='loading-spinner' className={styles["load-container"]}>
           <ReactLoading width={200} height={200} type="spin" color="DodgerBlue" />
         </div>
       }
-      {(router.query.size ? totalDocuments > Number(router.query.size) : totalDocuments > 10) && <Pagination page={page} setPage={setPage} resultsQTD={totalDocuments}/>}
+      {(router.query.size ? totalDocuments > Number(router.query.size) : totalDocuments > 10) && <Pagination page={page} setPage={setPage} resultsQTD={totalDocuments} />}
       {children}
     </div>
   )

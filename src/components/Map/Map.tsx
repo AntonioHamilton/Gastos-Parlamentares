@@ -23,7 +23,7 @@ type MapProps = {
 
 const Map = ({locations, userLocation}: MapProps) => {
   return (
-    <div className={styles['container']}>
+    <div data-testid='map-container' className={styles['container']}>
       <h1>Geolocalização dos usuários</h1>
       <MapContainer className={styles['container__map']} center={[userLocation.latitude, userLocation.longitude]} zoom={10} scrollWheelZoom={true}>
         <TileLayer

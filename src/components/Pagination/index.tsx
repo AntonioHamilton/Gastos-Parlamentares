@@ -34,9 +34,10 @@ const Pagination = ({resultsQTD, page, setPage}: PaginationProps) => {
   }
 
   return (
-    <div className={styles['pagination-container']}>
+    <div data-testid='pagination' className={styles['pagination-container']}>
       <>
         <button
+          data-testid='back'
           className={styles["pagination-container__button-next"]}
           onClick={() => {if (page >= 1) setPage(page - 1)}}
         >
@@ -76,7 +77,8 @@ const Pagination = ({resultsQTD, page, setPage}: PaginationProps) => {
           {pageButtonQTD()}
         </button>
       </>}
-      <button 
+      <button
+        data-testid='next'
         className={styles["pagination-container__button-next"]}
         onClick={() => {if (page + 1 !== pageButtonQTD()) setPage(page + 1)}}
       >
